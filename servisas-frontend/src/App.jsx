@@ -7,6 +7,7 @@ import Login from "./Login/Login"
 import Register from './Register/Register'
 import AdminPage from './components/AdminPage'
 import { AuthContextProvider } from './context/AuthContext';
+import Servisas from './components/Servisas';
 
 function App() {
 
@@ -20,6 +21,7 @@ function App() {
             <Route path="/login" element={<Login/>} />
             <Route path='/register' element={<Register />} />
             <Route path='/admin' element={<AdminPage />} />
+            <Route path='/servisas/:servisasId' element={<Servisas />}/>
         </Routes>
       </AuthContextProvider>
     </div>

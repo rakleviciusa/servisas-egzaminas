@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import AuthContext from '../context/AuthContext'
 import './ServisaiStyle.scss'
 
-function HomePage({ children }) {
+function HomePage({ children, props }) {
   const [servisai, setServisai] = useState([]);
   const [isOpen, setIsOpen] = useState(false)
   const [selectedItemId, setSelectedItemId] = useState(null);
@@ -100,7 +100,7 @@ function HomePage({ children }) {
 
       if (response.ok) {
         const data = await response.json();
-        console.log(data);
+
       } else {
         throw new Error("Error: " + response.status);
       }
@@ -132,21 +132,24 @@ function HomePage({ children }) {
               <h2>Serviso Pavadinimas: {servisas.name}</h2>
               <h4>Adresas: {servisas.address}</h4>
               <p>Vadovas: {servisas.manager}</p>
-              {userRole === "ADMIN" && <button onClick={() => deleteServisas(servisas.id)}>Pasalinti</button>}
-              {userRole === "ADMIN" &&
-                <button onClick={() => {
-                  setSelectedItemId(servisas.id);
-                  setIsOpen(true);
-                }}>
-                  Redaguoti
-                </button>
-              }
+              <div className="servisas-card--buttons">
+                {userRole === "ADMIN" && <button onClick={() => deleteServisas(servisas.id)}>Pasalinti</button>}
+                {userRole === "ADMIN" &&
+                  <button onClick={() => {
+                    setSelectedItemId(servisas.id);
+                    setIsOpen(true);
+                  }}>
+                    Redaguoti
+                  </button>
+                }
+              </div>
+
 
               {isOpen && selectedItemId === servisas.id && (
                 <div>
                   <form onSubmit={(e) => {
-                      e.preventDefault();
-                      updateServisas(servisas.id);
+                    e.preventDefault();
+                    updateServisas(servisas.id);
                   }} className="popup-form">
                     <label htmlFor="name">Serviso Pavadinimas
                       <input type="text"
@@ -156,7 +159,7 @@ function HomePage({ children }) {
                     </label>
 
                     <label htmlFor="address">Adresas
-                      <input 
+                      <input
                         type="text"
                         value={editAddress}
                         onChange={(e) => setEditAddress(e.target.value)}

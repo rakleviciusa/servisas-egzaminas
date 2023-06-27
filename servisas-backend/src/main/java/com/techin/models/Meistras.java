@@ -28,4 +28,6 @@ public class Meistras {
 
     private Servisas servisas;
 
+    private int rating;
+
 }
