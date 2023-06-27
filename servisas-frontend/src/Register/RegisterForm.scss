@@ -1,0 +1,63 @@
+$button-background: rgb(40, 107, 253);
+
+.register-container {
+    height: 70vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.register-form, .register-input {
+    display: flex;
+    flex-direction: column;
+}
+
+.register-form > h4 {
+    color: rgb(156, 156, 156);
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.register-form > h1 {
+    margin: 0;
+}
+
+.register-form > a {
+    color: $button-background;
+}
+
+.register-input > input {
+    border: 2px solid rgb(156, 156, 156, 0.3);
+    margin: 1em 0;
+}
+
+.register-input > input, .register-form > button{
+    padding: 1em;
+    border-radius: 10px;
+    font-family: inherit;
+    font-size: 1rem;
+}
+
+.register-form > button{
+    border: none;
+    background-color: $button-background;
+    color: #fff;
+    margin-top: 1em;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.register-input > label {
+    letter-spacing: 0.8px;
+    color: rgb(97, 97, 97);
+    font-weight: 700;
+}
+
+.login-container {
+    height: 50vh;
+}
+
+.register-form > button:hover {
+    background-color: rgb(2, 8, 90);
+}
