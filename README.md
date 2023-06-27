@@ -1,3 +1,5 @@
-# Volt
+# Servisas App
 
-Yra nemažai dalykų, kurie nespėta padaryti kaip menu sudarymas, adminui galimybė deletint ar pakeist maisto duomenis arba erroru išvedimas
+admin credentials:
+username: admin
+password: password
