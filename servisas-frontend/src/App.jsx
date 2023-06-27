@@ -13,7 +13,7 @@ function App() {
   return (
     <div className='container'>
       <AuthContextProvider>
-        <h1>SERVISAI</h1>
+        <h1 style={{ textAlign: "center" }}>SERVISAI</h1>
         <Navbar/>
         <Routes>
             <Route path='/' element={<HomePage />}/>

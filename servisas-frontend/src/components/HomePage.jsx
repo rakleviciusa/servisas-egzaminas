@@ -5,17 +5,21 @@ import './ServisaiStyle.scss'
 function HomePage({ children }) {
   const [servisai, setServisai] = useState([]);
   const [isOpen, setIsOpen] = useState(false)
+  const [selectedItemId, setSelectedItemId] = useState(null);
+  const [editName, setEditName] = useState("");
+  const [editAddress, setEditAddress] = useState("");
+  const [editManager, setEditManager] = useState("");
 
   const servisaiApi = "http://localhost:8080/api/allServisai";
 
   let userRole = ""
 
-    if (hasTokenInLocalStorage()){
+  if (hasTokenInLocalStorage()) {
 
-        const localStorageObj = JSON.parse(localStorage.getItem("tokens"));
-        userRole = localStorageObj.user.authorities[0].authority
+    const localStorageObj = JSON.parse(localStorage.getItem("tokens"));
+    userRole = localStorageObj.user.authorities[0].authority
 
-    }
+  }
 
   function hasTokenInLocalStorage() {
     return localStorage.getItem("tokens") !== null;
@@ -78,6 +82,10 @@ function HomePage({ children }) {
 
   async function updateServisas(id) {
 
+    const name = editName
+    const address = editAddress
+    const manager = editManager
+
     const servisaiInput = { name, address, manager };
 
     try {
@@ -92,6 +100,7 @@ function HomePage({ children }) {
 
       if (response.ok) {
         const data = await response.json();
+        console.log(data);
       } else {
         throw new Error("Error: " + response.status);
       }
@@ -117,26 +126,56 @@ function HomePage({ children }) {
         </div>
       )}
       {servisai.length !== 0 && (
-        <div className="meals-container">
+        <div className="servisas-container">
           {servisai.map((servisas) => (
-            <div key={servisas.id} className="meal-card">
+            <div key={servisas.id} className="servisas-card">
               <h2>Serviso Pavadinimas: {servisas.name}</h2>
               <h4>Adresas: {servisas.address}</h4>
               <p>Vadovas: {servisas.manager}</p>
               {userRole === "ADMIN" && <button onClick={() => deleteServisas(servisas.id)}>Pasalinti</button>}
               {userRole === "ADMIN" &&
-                <button onClick={() => setIsOpen(true)}>
+                <button onClick={() => {
+                  setSelectedItemId(servisas.id);
+                  setIsOpen(true);
+                }}>
                   Redaguoti
                 </button>
               }
 
-              {isOpen && (
+              {isOpen && selectedItemId === servisas.id && (
                 <div>
-                  <div>
-                    This is the content of the pop-up.
-                  </div>
-                  <button onClick={() => setIsOpen(false)}>
-                    Close Pop-up
+                  <form onSubmit={(e) => {
+                      e.preventDefault();
+                      updateServisas(servisas.id);
+                  }} className="popup-form">
+                    <label htmlFor="name">Serviso Pavadinimas
+                      <input type="text"
+                        value={editName}
+                        onChange={(e) => setEditName(e.target.value)}
+                      />
+                    </label>
+
+                    <label htmlFor="address">Adresas
+                      <input 
+                        type="text"
+                        value={editAddress}
+                        onChange={(e) => setEditAddress(e.target.value)}
+                      />
+                    </label>
+
+                    <label htmlFor="manager">Vadovas
+                      <input type="text"
+                        value={editManager}
+                        onChange={(e) => setEditManager(e.target.value)}
+                      />
+                    </label>
+                    <button type="submit">Redaguoti servisa</button>
+                  </form>
+                  <button onClick={() => {
+                    setSelectedItemId(null);
+                    setIsOpen(false);
+                  }}>
+                    Uzdaryti
                   </button>
                 </div>
               )}

@@ -62,7 +62,8 @@ public class ServisasController {
         if (servisasData.isPresent()){
             Servisas updatedServisas = servisasData.get();
             updatedServisas.setName(servisas.getName());
-
+            updatedServisas.setAddress(servisas.getAddress());
+            updatedServisas.setManager(servisas.getManager());
 
             Servisas servisasObject = servisasRepository.save(updatedServisas);
 

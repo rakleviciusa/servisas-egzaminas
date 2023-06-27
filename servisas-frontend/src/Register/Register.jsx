@@ -42,7 +42,7 @@ function Register() {
             <h1>Uzsiregistruokite Serviso Vizitui</h1>
             <h4>Esate Vartotojas? Tuomet <a href="/login">Prisijunkite</a></h4>
             <div className='register-input'>
-                <label htmlFor="username">Vrtotojo Vardas</label>
+                <label htmlFor="username">Vartotojo Vardas</label>
                 <input 
                     type="text" 
                     id='username'

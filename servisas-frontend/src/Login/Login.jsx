@@ -21,9 +21,9 @@ function Login() {
   return (
     <div className='register-container login-container'>
         <div className='form register-form'>
-          <h2>Log In</h2>
+          <h2>Prisijungti</h2>
             <div className='register-input'>
-                <label htmlFor="username">Username</label>
+                <label htmlFor="username">Vartotojo Vardas</label>
                 <input 
                   type="text" 
                   id='username'
@@ -31,7 +31,7 @@ function Login() {
                   onChange={e => setUsername(e.target.value)}/>
             </div>
             <div className='register-input'>
-                <label htmlFor="password">Password</label>
+                <label htmlFor="password">Slapyvardis</label>
                 <input 
                   type="password" 
                   id='password'

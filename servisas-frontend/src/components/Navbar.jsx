@@ -35,7 +35,7 @@ const Navbar = ({children}) => {
                     <li><a href="/">Home</a></li>
                     <li><a href="/register">Register</a></li>
                     {!user && <li><a href="/login">Login</a></li>}
-                    {user && <li><a href="#">{user.sub}</a></li>}
+                    {user && <li>{user.sub}</li>}
                     {userRole === "ADMIN" && <li><a href="/admin">ADMIN Page</a></li>}
                     {user && <li><button onClick={removeLocalStorage} className='logout-btn'>Logout</button></li>}
                 </div>

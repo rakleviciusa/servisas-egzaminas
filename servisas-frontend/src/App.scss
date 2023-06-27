@@ -13,3 +13,13 @@ body {
     max-width: 1000px;
     margin: 0 auto;
 }
+
+.popup-form,
+.popup-form > label {
+    display: flex;
+    flex-direction: column;
+}
+
+.popup-form {
+    margin: 1em 0;
+}
