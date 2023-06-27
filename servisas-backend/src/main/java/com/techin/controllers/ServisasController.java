@@ -50,8 +50,8 @@ public class ServisasController {
     @PostMapping("/addServisas")
     public ResponseEntity<Servisas> addServisas(@RequestBody Servisas servisas){
 
-            Servisas mealObject = servisasRepository.save(servisas);
-            return new ResponseEntity<>(mealObject, HttpStatus.OK);
+            Servisas servisasObject = servisasRepository.save(servisas);
+            return new ResponseEntity<>(servisasObject, HttpStatus.OK);
 
     }
 

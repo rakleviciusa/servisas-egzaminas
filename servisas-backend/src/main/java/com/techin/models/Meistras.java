@@ -26,4 +26,6 @@ public class Meistras {
 
     private String city;
 
+    private Servisas servisas;
+
 }
